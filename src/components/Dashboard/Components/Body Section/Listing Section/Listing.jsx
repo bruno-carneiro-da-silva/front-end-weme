@@ -10,26 +10,26 @@ import Axios from 'axios'
 // imported Images ===========>
 import img from '../../../Assets/image (1).png'
 
-const Listing = ({ children, shown, close }) => {
-  const [name, setName] = useState('')
+const Listing = () => {
+  const [name, setName] = useState([])
   const [modalShown, toggleModal] = useState(false);
-  const apiUrl = 'http://localhost:3000/profile'
+  const token = localStorage.getItem('token')
+  const apiURL = 'http://localhost:3000/profile/list'
 
-
-  useEffect(()=>{
-    Axios.get(apiUrl, {
+    Axios.get(apiURL, {
       headers: {
         'Content-type': 'application/json',
-        Authorization:  localStorage.getItem('token')
+        Authorization: token,
       },
-      body: JSON.stringify({
-        name,
-      })
+      name
     }).then((res) =>{
-      console.log(res)
-    }).catch(err => console.log(err)) 
-  },[name])
+      const userData = res.data
+      console.log(userData)
+    }).catch(err => console.log('cair no catch', err)) 
 
+    useEffect(()=>{
+      setName(name)
+    }, [name])
 
   return (
     <div className='lisitingSection'>

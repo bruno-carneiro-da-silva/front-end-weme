@@ -18,11 +18,18 @@ function ModalListing({ children, shown, close }) {
   const [security_code, setSecurityCode] = useState(' ')
   const navigat = useNavigate()
 
+  const token = localStorage.getItem('token')
+  const apiUrl = 'http://localhost:3000/profile/create'
+
 
   function handleDataSubmit(e){
     e.preventDefault();
 
-      Axios.post('http://localhost:3000/profile/:id', {
+      Axios.put(apiUrl, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: token,
+        },
         name,
         user,
         email,
@@ -31,26 +38,27 @@ function ModalListing({ children, shown, close }) {
         security_code
       }).then(() =>{
         navigat('/dashboard')
-      }).catch(err => console.log(err))   
+      }).catch(err => console.log('cair no catch', err))   
    
     }
 
-    useEffect(() => {
-      Axios.get('http://localhost:3000/profile/:id', {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: localStorage.getItem('token')
-        },
-        name,
-        user,
-        email,
-        password,
-        website,
-        security_code
-      }).then((res) =>{
-        console.log(res)
-      }).catch(err => console.log(err)) 
-    })
+    useEffect(()=> {
+    Axios.get('http://localhost:3000/profile/list', {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      name,
+      user,
+      email,
+      password,
+      website,
+      security_code
+    }).then((res) =>{
+      console.log(res)
+    }).catch(err => console.log('cair no catch', err))
+
+  })
 
 
   return shown ? (

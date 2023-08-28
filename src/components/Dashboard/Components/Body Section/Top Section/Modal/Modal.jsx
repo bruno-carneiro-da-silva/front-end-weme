@@ -11,14 +11,14 @@ import Axios from 'axios'
 
 function Modal({ children, shown, close }) {
 
-  const [user, setUsername] = useState(' ')
-  const [email, setEmail] = useState(' ')
-  const [password, setPassword] = useState(' ')
-  const [website, setWebsite] = useState(' ')
-  const [security_code, setSecurityCode] = useState(' ')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [website, setWebsite] = useState('')
+  const [security_code, setSecurityCode] = useState('')
   const navigat = useNavigate()
 
-
+  const token = localStorage.getItem('token')
   const apiURl = 'http://localhost:3000/profile/create';
 
   function handlePasswordSubmit(e){
@@ -27,16 +27,17 @@ function Modal({ children, shown, close }) {
       Axios.post(apiURl, {
         headers: {
           'Content-type': 'application/json',
-          Authorization: localStorage.getItem('token')
+          Authorization: token
         },
-        user,
+        name,
         email,
         password,
         website,
         security_code,
-      }).then(() =>{
+      }).then((res) =>{
+        console.log(res)
         navigat('/dashboard')
-      }).catch(err => console.log(err))   
+      }).catch(err => console.log('cair no catch', err))   
    
     }
   return shown ? (
@@ -63,7 +64,7 @@ function Modal({ children, shown, close }) {
               <FaUserShield className="icon icon-form"/>
               <input type="text" id="user-form" className="user-form" placeholder="Digite um nome ou titulo"
                onChange={(event)=>{
-                setUsername(event.target.value)
+                setName(event.target.value)
               }}
               />
               </div>

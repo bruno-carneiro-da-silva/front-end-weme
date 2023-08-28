@@ -22,6 +22,7 @@ const Login = () =>{
   const [loginStatus, setLoginStatus] = useState(' ')
   const [statusHolder, setStatusHolder] = useState('message')
   const apiUrl = 'http://localhost:3000/login'
+  const token = localStorage.getItem('token')
 
   
 
@@ -33,16 +34,16 @@ const Login = () =>{
       Axios.post(apiUrl, {
         headers: {
           'Content-type': 'application/json',
-          Authorization: 'Bearer ' + localStorage.getItem('token')
+          Authorization:  `Bearer ${token}`
         },
         email,
         password
       }).then((data) =>{
-        if(loginStatus == ' ' || statusHolder == ' '){
+        if(!data.data || loginStatus == '' || statusHolder == ''){
           setLoginStatus('Email ou senha inválidos')
           navigate('/')
         }else{
-          console.log(data.data.token)
+          localStorage.setItem('token', data.data.token)
           navigate('/dashboard');
         }
       }).catch(err => console.log(err))   
@@ -54,7 +55,7 @@ const Login = () =>{
         setStatusHolder('showMessage')
         setTimeout(()=>{
           setStatusHolder('message')
-        }, 1000)
+        }, 4000)
       }
     },[loginStatus])
 

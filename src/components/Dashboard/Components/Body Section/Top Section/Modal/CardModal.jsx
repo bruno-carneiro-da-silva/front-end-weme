@@ -15,18 +15,24 @@ function CardModal({ children, show, close }) {
   const [password, setPassword] = useState(' ')
   const [security_code, setSecurityCode] = useState(' ')
   const navigat = useNavigate()
+  const token = localStorage.getItem('token')
+  const apiUrl = 'http://localhost:3000/profile/create'
 
   function handlePasswordSubmit(e){
     e.preventDefault();
 
-      Axios.post('http://localhost:3000/profile/create', {
+      Axios.post(apiUrl, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: token
+        },
         user,
         email,
         password,
         security_code
       }).then(() =>{
         navigat('/dashboard')
-      }).catch(err => console.log(err))   
+      }).catch(err => console.log('cair no catch', err))   
    
     }
 
