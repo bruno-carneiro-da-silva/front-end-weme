@@ -1,0 +1,102 @@
+:root{
+  --primaryColor: hsl(94, 55%, 56%);
+    --hoverColor: hsl(93, 75%, 76%);
+    --paleGreen: hsl(96, 75%, 89%);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --greyText: hsl(0, 0%, 75%);
+    --bgColor: hsl(113, 11%, 85%);
+    --inputColor: hsl(330, 12%, 97%);
+
+  --biggesFontSize: 2.5em
+  --biggesFontSize: 1.5em
+  --h2FontSize: 1.25em
+  --h3FontSize: 1em
+  --normalFontSize: .938em
+  --smallFontSize: .813em
+  --smallestFontSize: .75em
+}
+input{
+  background: none;
+  outline: none;
+  border: none;
+  width: 200px;
+
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 400;
+}
+
+.modal-content {
+  width: 50%;
+  border-radius: 10px;
+  min-height: 200px;
+  height: 550px;
+  background-color: white;
+  padding: 25px;
+  overflow: hidden;
+
+.user-form, 
+.email-form,
+.password-form,
+.website-form,
+.code-form
+  {
+      padding: .8rem;
+      background: var(--inputColor);
+      border-radius: 10px;
+      color: var(--blackColor);
+      align-items: center;
+      margin: auto;
+      justify-content: center;
+      font-size: 12px;
+      width: 100%;
+      gap: .5rem;
+      transition: .3s ease;
+      border: none;
+  }
+  .label{
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .icon-form{
+    margin: 3px;
+  }
+  .btn-form{
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+
+    &:hover{
+      background: var(--hoverColor);
+      color: var(--whiteColor);
+    }
+  }
+}
+
+
+.optionsButton{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+
+  .options{
+    cursor: pointer;
+    border-radius: 10px;
+    border: transparent;
+    padding: 10px;
+    margin: 5px;
+  }
+}

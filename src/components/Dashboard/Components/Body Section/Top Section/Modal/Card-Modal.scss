@@ -1,0 +1,48 @@
+.card-modal{
+  width: 50%;
+  border-radius: 10px;
+  min-height: 200px;
+  height: 450px;
+  background-color: white;
+  padding: 25px;
+  overflow: hidden;
+}
+
+.user-form, 
+.email-form,
+.password-form,
+.website-form,
+.code-form
+  {
+      padding: .8rem;
+      background: var(--inputColor);
+      border-radius: 10px;
+      color: var(--blackColor);
+      align-items: center;
+      margin: auto;
+      justify-content: center;
+      font-size: 12px;
+      width: 100%;
+      gap: .5rem;
+      transition: .3s ease;
+      border: none;
+  }
+  .label{
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .icon-form{
+    margin: 3px;
+  }
+  .btn-form{
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+
+    &:hover{
+      background: var(--hoverColor);
+      color: var(--whiteColor);
+    }
+  }
