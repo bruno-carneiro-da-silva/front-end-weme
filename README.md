@@ -5,6 +5,10 @@
 
 ## Páginas: 
 
+Link do figma que criamos para inspiração da layout: 
+
+https://www.figma.com/file/IeDXcnpU0DgVU2FLhqNBQ8/weme?type=design&mode=design&t=MZMNE6Xiz4t2oxWM-1
+
 - Login: 
 
 ![Captura de Tela 2023-08-27 às 10 30 40 PM](https://github.com/bruno-carneiro-da-silva/front-end-weme/assets/49591443/12e7b890-8c2c-4930-ae0c-cfb2376f3c3e)
