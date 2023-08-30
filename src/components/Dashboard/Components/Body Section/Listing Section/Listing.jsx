@@ -11,25 +11,21 @@ import Axios from 'axios'
 import img from '../../../Assets/image (1).png'
 
 const Listing = () => {
-  const [name, setName] = useState([])
+  const [names, setNames] = useState([]);
   const [modalShown, toggleModal] = useState(false);
-  const token = localStorage.getItem('token')
-  const apiURL = 'http://localhost:3000/profile/list'
+  const token = localStorage.getItem('token');
+  const apiURL = 'http://localhost:3000/profile/list/${id}';
 
+  useEffect(() => {
     Axios.get(apiURL, {
       headers: {
         'Content-type': 'application/json',
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
-      name
-    }).then((res) =>{
-      const userData = res.data
-      console.log(userData)
-    }).catch(err => console.log('cair no catch', err)) 
-
-    useEffect(()=>{
-      setName(name)
-    }, [name])
+    })
+      .then((res) => {const data = res.data; setNames(data)})
+      .catch((err) => console.log('Error', err));
+  }, []);
 
   return (
     <div className='lisitingSection'>
@@ -41,25 +37,29 @@ const Listing = () => {
       </div>
 
       <div className="secContainer flex">
-            <div className="singleItem"
+        {names.map((item, i) => (
+          <div
+            key={i}
+            className="singleItem"
             onClick={() => {
-              toggleModal(!modalShown);
+              toggleModal(true);
             }}
-            >
-              <AiFillHeart className="icon" />
-              <img src={img} alt="Image Name" />
-              <h3>{name}</h3>
-            </div>
-            <ModalListing
-                  shown={modalShown}
-                  close={() => {
-                    toggleModal(false);
-                  }}
-                >
-            </ModalListing>
+          >
+            <AiFillHeart className="icon" />
+            <img src={img} alt="Image Name" />
+            <h3>{item.name}</h3>
+          </div>
+        ))}
+        <ModalListing
+          shown={modalShown}
+          close={() => {
+            toggleModal(false);
+          }}
+        >
+        </ModalListing>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Listing
